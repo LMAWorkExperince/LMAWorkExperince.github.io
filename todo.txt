@@ -1,0 +1,25 @@
+the sonar project:
+    - the sonar project will need to be polished, commented, documented, sorted.
+    - the document will contain:
+        - a bref overview of what the project is
+        - an explnation on how to play the game
+        - any problems that popped up and the solutions do them
+        - a explnation on some of the game mechanics such as:
+            - sonar particals
+            - the movement
+    
+    - the polish:
+        - the game will not have memory leaks
+        - the game mechanics must be consistant and not buggy
+        - it has to run at a reasonable frame rate
+        - it has to be easy to understand what to do
+
+    - the sonar will be done up like a game that will include the following:
+        - a game level selection ( min of 2 levels )
+        - minimap to display the sonar traces permanently.
+        - goal
+        - finish condition
+        - fail condition
+        - score system
+        - continuios movement (like how a boat dosent just stop when it turns its motors off)
+        - an enemy (bonus)

@@ -78,10 +78,10 @@ var MAP = [
 "                                               ..:xKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWN0o.                                                                                                                        .,lkKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "                                                  .;d0XWWMMMMMMWNK0OOOOOO0KNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXk:.                                                       .'..                                                                  .'cOWMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "                                                     ..,:cloooc;'..      ..;dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNk:.                                                       'o0NX0Okkkkkxdl,..                                                        .dWMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-"                                                                            .,dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0O0O00O0XMMMMMW0c.                                                      ..:OWMMMMMMMMMMMMMNKOd:'.                                                    .oWMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-"                                                                              .;kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKx;........:OWMWKo.                                                       .ckXWMMMMMMMMMMMMMMMMMMN0o;.                                                  .oWMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-"                                                                                .lOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkl,.          'coc.                                                       .ckNMMMMMMMMMMMMMMMMMMMMWx,..                                                   .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-",                                                                                 .'l0NMMMMMMMMMMMMMMMMMMMMMMMWN0d;.                                                                       .l0WMMMMMMMMMMMMMMMMMMMMMMWo.                                                   .;xXMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"                                                                            .,dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0O0O00O0XMMMMMW0c.                                                     ..:OWMMMMMMMMMMMMMNKOd:'.                                                    .oWMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"                                                                              .;kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKx;........:OWMWKo.                                                      .ckXWMMMMMMMMMMMMMMMMMMN0o;.                                                  .oWMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"                                                                                .lOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkl,.          'coc.                                                      .ckNMMMMMMMMMMMMMMMMMMMMWx,..                                                   .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+",                                                                                 .'l0NMMMMMMMMMMMMMMMMMMMMMMMWN0d;.                                                                     .l0WMMMMMMMMMMMMMMMMMMMMMMWo.                                                   .;xXMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "k'                                                                                   .:ONWMMMMMMMMMMMMMMMMWX0xl,.                                                                        .c0WMMMMMMMMMMMMMMMMMMMMMMMMNo.                                                 .;xXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "0,                                                                                     .:x0XNWMMMMWWNXKOxl;'.                                                                         .'ckXMMMMMMMMMMMMMMMMMMMMMMMMMMWo.                                                 .dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "NOo;..                                                                                    ..,:cc::;,'..                                                                              .ckNMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0c'.                                                .dXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
@@ -138,12 +138,12 @@ var MAP = [
 "MMMMMMMMMMMMMMMMMMMMMO;.                                                                      ...                                                                                                                                                                              ,OWMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMMMMMMMMMMMMMMMMMMO;.                                                           ..',:lodkOO0d.                                                                                                                                                                              ,OMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMMMMMMMMMWXK00Oxxdc.                                                     .';loxk0KNWWMMMMMMXl.                                                                                                                                                                              ,OMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-"MMMMMMMMMMMMXo'..                                                       .':d0XWMMMMMMMMMMMN0ko,.                                              ,dkdl;.                                                                                                                          .cddddddx0WMMMMMMMMMMMMMMMMMM",
-"MMMMMMMMMMMMXl.                                                      .'lkKWMMMMMMMMMMMMN0d;.                                                 :XMMMMWd.                                                                                                                                 .lXMMMMMMMMMMMMMMMMMM",
-"MMMMMMMMMMMMXl.                                                    'ckXWMMMMMMMMMMMMMMNo.                                                  .:OMMMMMMk.                                                                                                                                 .lXMMMMMMMMMMMMMMMMMM",
-"MMMMMMMMMMMMXo'.                                                .:kXWMMMMMMMMMMMMMMMMMK;                                                .,lONWMMMMMM0c'.                                                                                                                               .lXMMMMMMMMMMMMMMMMMM",
-"MMMMMMMMMMMMWX0OOOOOOo'                                      .:kXWMMMMMMMMMMMMMMMMMMMMK;                                              .;kNWMMMMMMMMMMNK0xoc;'.                                                                                                                        .,dNMMMMMMMMMMMMMMMMMM",
-"MMMMMMMMMMMMMMMMMMMMWO;.                                    'dXMMMMMMMMMMMMMMMMMMMMMMMK;                                            .o0NWMMMMMMMMMMMMMMMMMMWX0kdoolc:,.                                                                                                          ...;d0XWMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMXo'..                                                       .':d0XWMMMMMMMMMMMN0ko,.                                              ,dkdl;.                                                                                             EE                           .cddddddx0WMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMXl.                                                      .'lkKWMMMMMMMMMMMMN0d;.                                                 :XMMMMWd.                                                                                          EEEEEE                                 .lXMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMXl.                                                    'ckXWMMMMMMMMMMMMMMNo.                                                  .:OMMMMMMk.                                                                                           EEEEEE                                .lXMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMXo'.                                                .:kXWMMMMMMMMMMMMMMMMMK;                                                .,lONWMMMMMM0c'.                                                                                          EEEEEE                               .lXMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMWX0OOOOOOo'                                      .:kXWMMMMMMMMMMMMMMMMMMMMK;                                              .;kNWMMMMMMMMMMNK0xoc;'.                                                                                     EEEE                               .,dNMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMWO;.                                    'dXMMMMMMMMMMMMMMMMMMMMMMMK;                                            .o0NWMMMMMMMMMMMMMMMMMMWX0kdoolc:,.                                                                             EE                           ...;d0XWMMMMMMMMMMMMMMMMMMM",
 "MMMMMMMMMMMMMMMMMMMMWO;.                                  ,xXWMMMMMMMMMMMMMMMMMMMMMMMMXdcccccc:'                                   .cXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKkxollllllclllllllllllllllllllllllc:;,.                                                                  'o00KNMMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMMMMMMMMMMMMMMMMMWO;.                               .'oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWx.                                .ckXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXd'.                                                                ,OWMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMMMMMMMMMMMMMMMMMMXkdoooloc,.                   .'lkOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWx.                              ;kKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNd'.                                                               .;0MMMMMMMMMMMMMMMMMMMMMMMMMMM",
@@ -188,6 +188,7 @@ var r2 = -1;
 var xpos = 20; 
 var ypos = 300;
 var bounce = true;
+var count = 0;
 
 var dots = [];
 var dotsNum = 0;
@@ -196,6 +197,7 @@ var ball = [];
 
 var playerx = 950;
 var playery = 500;
+var playerAcc = new Vec(0, 0);
 // var playerx = 0;
 // var playery = 0;
 var player = document.createElement("img");
@@ -222,6 +224,8 @@ function dot ()
     this.x = 0;
     this.num = -1;
     this.green = 255;
+    this.opposite = false;
+
 }
 
 function spawnDots()
@@ -246,7 +250,7 @@ function spawnDots()
     cent.pos.y = 500;
 
 }
-setInterval(spawnDots, 2000);
+//setInterval(spawnDots, 2000);
 function randomRange(min, max) {
     return Math.random() * (max - min) + min;
     }
@@ -257,9 +261,9 @@ function spawntarget() {
         ball[i] = new dot();
         ball[i].pos.x = randomRange(20,1880);
         ball[i].pos.y = randomRange(20,980);
-        var rand = randomRange(0,359)
-        ball[i].acc.x = Math.cos(rand);
-        ball[i].acc.y = Math.sin(rand);
+        // var rand = randomRange(0,359)
+        // ball[i].acc.x = Math.cos(rand);
+        // ball[i].acc.y = Math.sin(rand);
     }
 }
 
@@ -294,7 +298,7 @@ function moveDots()
             var playerVec = new Vec(playerx, playery);
             dots[i].acc = dots[i].pos.subtract( playerVec ).unit().negative();
             continue;
-        }
+        } 
         else if ( MAP[mapPos.y][mapPos.x] != ' ' )
         {
             // for (var j = 0; j < ball.length; j++)
@@ -326,42 +330,45 @@ function moveDots()
 
             // dots[i].acc = dots[i].acc.negative().multiply(1);
             dots[i].hit = true;
+            if (MAP[mapPos.y][mapPos.x] == 'E') {
+                console.log("E")
+                dots[i].opposite = true;
 
-                
+            }
             // }
             
-        }
+        } 
         else if (dots[i].t > 1000)
             dots[i].returned = true;
         
 
         dots[i].t++;
     }
-    // for (var i = 0; i < ball.length; i++){ 
-    //     for (var j = 0; j < dotsNum; j++)
-    //     {
-    //         if (dots[j].returned == true) {
-    //             nu = dots[j].num;
-    //             nul.push(ball[nu].x);
-    //             nulu.push(ball[nu].y)
-    //             if (nu <0) {
+    for (var i = 0; i < ball.length; i++){ 
+        // for (var j = 0; j < dotsNum; j++)
+        // {
+        //     if (dots[j].returned == true) {
+        //         nu = dots[j].num;
+        //         nul.push(ball[nu].x);
+        //         nulu.push(ball[nu].y)
+        //         if (nu <0) {
 
-    //             } else {
-    //                 var roundedX = Math.round(ball[nu].x);
-    //                 var roundedY = Math.round(ball[nu].y);
-    //                 context.fillStyle = 'green' || '#000';
-    //                 context.fillRect(roundedX-15, roundedY-15, 30, 30);
-    //             }
+        //         } else {
+        //             var roundedX = Math.round(ball[nu].x);
+        //             var roundedY = Math.round(ball[nu].y);
+        //             context.fillStyle = 'green' || '#000';
+        //             context.fillRect(roundedX-15, roundedY-15, 30, 30);
+        //         }
             
 
-    //             drawPixel(context, dots[i].pos.x, dots[i].pos.y, 'black');
-    //             dots.splice(j,1)
-    //             dotsNum--;
-    //         }
-    //     }
-    //     drawCircle(ball[i].pos.x,ball[i].pos.y, 'black',15)
-    //     ball[i].pos = ball[i].pos.add(ball[i].acc.multiply(5))
-    // }
+        //         drawPixel(context, dots[i].pos.x, dots[i].pos.y, 'black');
+        //         dots.splice(j,1)
+        //         dotsNum--;
+        //     }
+        // }
+        drawCircle(ball[i].pos.x,ball[i].pos.y, 'green',15)
+        ball[i].pos = ball[i].pos.add(ball[i].acc.multiply(5))
+    }
 
 }
 function black2() {
@@ -387,10 +394,11 @@ function black2() {
         dots[i].green--;
         // context.fillStyle = rgbToHex(0, dots[i].green, 0) || '#000';
         // context.fillRect(roundedX, roundedY, 3, 3);
-
-        console.log(dotsNum);
-
-        drawPixel(context, dots[i].x, dots[i].y, rgbToHex(0, dots[i].green, 0), 3);
+        if(dots[i].opposite == false) {
+            drawPixel(context, dots[i].x, dots[i].y, rgbToHex(0, dots[i].green, 0), 3);
+        } else if (dots[i].opposite) {
+            drawPixel(context, dots[i].x, dots[i].y, rgbToHex(dots[i].green, 0, 0), 3);
+        }
     }
     
 }
@@ -460,39 +468,79 @@ function drawCircle(xp, yp, color,max)
     } 
 }
 
+function handlePlayerMovement(deltaTime)
+{
+    var mapPos = getTile(playerx, playery);
+
+
+    if ( MAP[mapPos.y][mapPos.x] != ' ' ) {
+        playerx += -playerAcc.x * deltaTime;
+        playery += -playerAcc.y * deltaTime;
+        playerAcc = playerAcc.negative().divide(2);
+        
+    }
+    
+
+    replacePlayer();
+    playerx += playerAcc.x * deltaTime;
+    playery += playerAcc.y * deltaTime;
+}
+
 spawnDots();
-// spawntarget();
+spawntarget();
 function run () {
     moveDots();
+
     
     // context.drawImage(player, 900, 485);
-    context.drawImage(player, playerx-50,playery-15);
     // context.drawImage(map1, map1x, map1y, 1900, 1000);
+    
+    var deltaTime = getDeltaTime();
+
+    handlePlayerMovement(deltaTime);
+    
+    context.drawImage(player, playerx-50,playery-15);
+    count++
+    if (count == 120) {
+        spawnDots()
+        count = 0;
+    }
 
 }
 function replacePlayer() {
     context.fillStyle = '#000';
-    context.fillRect(playerx-50, playery-15, 100, 30);
+    context.fillRect(playerx-52, playery-15, 105, 35);
 }
 document.addEventListener('keydown', function (event) {
     if(event.keyCode === 37) {
-        replacePlayer();
-        playerx -= 5
+        playerAcc.x -= 1;
     } else if (event.keyCode === 39) {
-        replacePlayer();
-        playerx +=5
-    } else if (event.keyCode === 38) {
-        replacePlayer();
-        playery -= 5;
+        playerAcc.x += 1
+    }
+    if (event.keyCode === 38) {
+        playerAcc.y -= 1;
     }  else if (event.keyCode === 40) {
-        replacePlayer();
-        playery +=5
+        playerAcc.y += 1
     }
     }, false);
 
 
 
 //////////////
+var startFrameMillis = Date.now();
+var endFrameMillis = Date.now();
+function getDeltaTime()
+{
+    endFrameMillis = startFrameMillis;
+    startFrameMillis = Date.now();
+    var deltaTime = (startFrameMillis - endFrameMillis) * 0.001;
+    if (deltaTime > 1)
+    {
+        deltaTime = 1;
+    }
+    return deltaTime;
+}  
+
 (function () {
     var onEachFrame;
     if (window.requestAnimationFrame) {

@@ -1,7 +1,7 @@
 the sonar project:
     - the sonar project will need to be polished, commented, documented, sorted.
     - the document will contain:
-        - a bref overview of what the project is
+        - a brief overview of what the project is
         - an explnation on how to play the game
         - any problems that popped up and the solutions do them
         - a explnation on some of the game mechanics such as:
@@ -10,16 +10,22 @@ the sonar project:
     
     - the polish:
         - the game will not have memory leaks
+            - can test this using task manager and see if the mem usage goes up over time
         - the game mechanics must be consistant and not buggy
-        - it has to run at a reasonable frame rate
-        - it has to be easy to understand what to do
+        - it has to run at a reasonable frame rate 
+            - above 20
+        - it has to be easy to understand what to do 
+            - key bindings the top - stating what ovjective
 
     - the sonar will be done up like a game that will include the following:
         - a game level selection ( min of 2 levels )
-        - minimap to display the sonar traces permanently.
         - goal
+            - shoot at a target. that will show up as a different color on the sonar
+        - score system 
+            - you have to distroy as many targets in a time limit.
         - finish condition
+         - when the timer runs out
         - fail condition
-        - score system
+         - hit the enemy
         - continuios movement (like how a boat dosent just stop when it turns its motors off)
         - an enemy (bonus)

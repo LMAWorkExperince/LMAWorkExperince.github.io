@@ -1,0 +1,11 @@
+body{
+    background:rgb(0, 0, 0);
+    color: white;
+}
+.can{
+    background: rgb(0, 0, 0);
+    border: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+}

@@ -18,7 +18,8 @@ the sonar project:
             - key bindings the top - stating what ovjective
 
     - the sonar will be done up like a game that will include the following:
-        - a game level selection ( min of 2 levels )
+        - a game level selection ( min of 2 levels ) 
+            - ( changed ) just one map will do so no need for a selection
         - goal
             - shoot at a target. that will show up as a different color on the sonar
         - score system 
@@ -27,5 +28,5 @@ the sonar project:
          - when the timer runs out
         - fail condition
          - hit the enemy
-        - continuios movement (like how a boat dosent just stop when it turns its motors off)
+        - continuios movement (like how a boat dosent just stop when it turns its motors off) ( bonus )
         - an enemy (bonus)

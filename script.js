@@ -3,7 +3,162 @@ var context = canvas.getContext("2d");
 document.getElementById("scan").addEventListener("click",spawnDots)
 document.getElementById("target").addEventListener("click", spawntarget)
 
-var MAP = [
+var WIN = false
+
+var MAP2 = [
+    "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKkoood0WMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWNNXXKKKKKKKKKKKKKKKXNWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKXNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKkl,.    .oNMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0xddddoolcccccccccccccccccc::,,''''..................'''''''''',;:ccccccccccccccccccccccccccccccccccccccc:;,.................................';:cclodxk00KXXXXXXXXXNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0dc;..       .lKXXXNWMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKc.                                                                                                                                                      ...........';cldxkOKNNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0:.             ..'';dNMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKc.                                                                                                                                                                         .',:ldxkO0XNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWX0l.                  .lXMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKc.                                                                                                                                                                                  ..,lkKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXx:,..                     ,oxxx0NMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMNK000000d,.                                                                                                                                                                                       .ckXWMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0xo:'                              .cXMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMWk;...                                                                                                                                                                                               ..:kNMMMMMMMMMMMMMMMMMMMMWXOdc;..                                  .cXMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMWx'.                                                                                                                                                                                                    .,o0NMMMMMMMMMMMMMWKxl;..                                    .;ld0WMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMWx'.                                                                                                                                                                                                       .:dKWMMMMMMWKko;.                                        :0WMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMWWWWWWNXo'                                                                                                                                                                                                           .l0WMWKkc'.                                         .,xNMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMXd:;,'''..                                                                                                                                                                                                              .c0Kl.                                         .lk0XWMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMM0:.                                                                                                                                                                                                                       .'.                                         .oNMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMM0:.                                                                                                                                                                                                                                                                .,:dKWMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMM0:.                                                                                                                                                                                                                                                            .,lkKNWMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMNOdoooool,.                                                                                                                                                                                                                                                .'lkKNWMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMWx'.                                                                                                                                                                                                                                            'lx0XWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMWx'.                                                                                                                                                                                                                                           ,kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMNx'.                                                                                                                                                                                                                                        .,l0NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMW0o:;;,,,'.                                                                                                                                                                                                                           ..,:ok0NWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWKc.                                                                                                                                                                                                                       .lk0XNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKc.                                                                                                                                                                                                                       .l0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKc.                                                                                                                                                                                                                         .oXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXo,.............'''''''''''''''''''',::ccccloollccccccccc:;,,'''.                                            .',,,:cloodddddddddoododooc:;,'....                                                                             .cXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXKKKKKKKKKKKKXNNWNNNWWWWWWWWWNNWWWWWMMMMMMMMMMMMMMMMMMMMWWWWWWXl.                                         .xNWWWWMMMMMMMMMMMMMMMMMMMMMMWWNNXK0Okxdoooooloollc;'...                                                          .oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                          oWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXK0kdlc:,..                                                   .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0'                                          cNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXKOxdoc,.                                             ,0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMX:                                          :NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0o'                                            lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWl                                          :NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0,                                           .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMx.                                         :NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKkkkkKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk.                                           .dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMx.                                         :NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNl.  .oWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXc                                            .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMx.                                         :NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWX:    lNWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMO,                                            .dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXXXXXXXXXNWWMMMMMMMMMMMMMMMMMMMx.                                         :NMMMMMMMMMMMMMMMMMMMMMMMMMMMMNd:::;.    .;:::xWMMMMMMMMMMMMMMMMMMMMMMMMMWO;                                            .kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXOo;'........',:codkKXWMMMMMMMMMMMMx.                                         :NMMMMMMMMMMMMMMMMMMMMMMMMMMMMX;              cNMMMMMMMMMMMMMMMMMMMMMMMMMMM0,                                            lNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXKOxc,..                  .';cox0XWMMMMMMx.                                         :NMMMMMMMMMMMMMMMMMMMMMMMWKOOOx'              ,kOOOKWMMMMMMMMMMMMMMMMMMMMMMWk'                                           cNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNX0Oxl:,..                              .,lkKWMMMx.                                         :NMMMMMMMMMMMMMMMMMMMMMMMK:....                ....cXMMMMMMMMMMMMMMMMMMMMMMMWx.                                          :XMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXKOxo:,..                                        .'cxKWx.                                         :NMMMMMMMMMMMMMMMMMMMMMMM0'                        ;XMMMMMMMMMMMMMMMMMMMMMMMMWo                                          '0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNXKOxl;'.                                                  .'l:.                                         :NMMMMMMMMMMMMMMMMMMMMMMM0,                        ;KMMMMMMMMMMMMMMMMMMMMMMMMMx.                                         .OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKkoc;,...                                                                                                     :NMMMMMMMMMMMMMMMMMMMMMMMXl..                      .oXMMMMMMMMMMMMMMMMMMMMMMMMk.                                         .OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMWX0dc,..                                                                                                            :NMMMMMMMMMMMMMMMMMMMMMMMMKc.                       .oNMMMMMMMMMMMMMMMMMMMMMMMO'                                         .dWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMWXkc,.                                                                                                                 :NMMMMMMMMMMMMMMMMMMMMMMMMNo.                        ,KMMMMMMMMMMMMMMMMMMMMMMMX;                                          'kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMW0o,.                                                                                                                    :NMMMMMMMMMMMMMMMMMMMMMMMMM0'                        '0MMMMMMMMMMMMMMMMMMMMMMMX;                                           'OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMWKl.                                                                                                                       :NMMMMMMMMMMMMMMMMMMMMMMMMMK;                        '0MMMMMMMMMMMMMMMMMMMMMMMNc                                            'xNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMN0o'                                                                                                                         :NMMMMMMMMMMMMMMMMMMMMMMMMMK,                        '0MMMMMMMMMMMMMMMMMMMMMMMW0;                                            'OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMW0l'                                                                                                                           :NMMMMMMMMMMMMMMMMMMMMMMMMMk.                        '0MMMMMMMMMMMMMMMMMMMMMMMMWO,                                            cXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMWKo.                                                     ......                                                                  :NMMMMMMMMMMMMMMMMMMMMMMMMX:                         ;KMMMMMMMMMMMMMMMMMMMMMMMMMWk'                                           .dWMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMW0o'                                                   .,cd0XNNX0Okxoc,..                                                          :NMMMMMMMMMMMMMMMMMMMMMMMWx.                        .oWMMMMMMMMMMMMMMMMMMMMMMMMMMWO,                                           'OMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMWKo'.                                             ..',:ox0NWMMMMMMMMMMMWNXKOxl;..                                                    :NMMMMMMMMMMMMMMMMMMMMMMMWo                         ;KMMMMMMMMMMMMMMMMMMMMMMMMMMMMWx.                                           oWMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMWO:.                                        ..';cox0KNWWMMMMMMMMMMMMMMMMMMMMMMMNKkl'.                                                 cNMMMMMMMMMMMMMMMMMWNXK0kx,                         :KNNNNNNNNWMMMMMMMMMMMMMMMMMMMMX:                                           :XMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMXc                                    .';cox0XNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkc'                                               lNMMMMMMMMMMMWNKOxo:,...                             ......'',cdOXWMMMMMMMMMMMMMMMMWO'                                          .OWMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMWx.                             ..';cokKXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKx;.                                           .xWWWWNXK0Okdl:,..                                               .:ONMMMMMMMMMMMMMMMMWo                                           :XMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMM0,                         .;lxO0XNNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXc                                            ',,,,'...                                                         .cxKNNNWMMWWNXKOxol,                                           .kMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMx.                        .dNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                                                                                                                 ..'';::;,'..                                                 ;KMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMWd.                        .cONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0,                                                                                                                                                                               :KMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMx.                          .:xXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWd.                                                                                                                                                                               .xMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMM0:.                            'oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0,                                                                                                                                                                                 dMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMW0l'.                            'dXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWo                                                                                                                                                                                  oWMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMN0l.                             'dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNl                                                                                                                                                                                  :XMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMNOc.                             'dXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK;                                                                                                                                                                                  .OMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMNkc.                             ,dXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0'                                                                                                                                                                                   cXMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMNOc.                             ,xXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWX0o.                                                                                                                                                                                   .OMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMNO:.                            .:kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNX0kxl:,..                                                                                                                                                                                      oWMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMNOc.                            .oXMMMMMMMMMMMMMMMMMMMMMWN0OOkxoc,..                                                                                                                                                                                             lWMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMN0o,.                          .dNMMMMMMMMMMMMMMMWXOdc;'.                                                                                                                                                                                                      lWMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMWKxc.                         'OMMMMMMMMMMMWX0xc'.                                                                                                                                                                                                           lWMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMWk.                         :XMMMMMMMMMMO;.                                                                                                                                                                                                               lWMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMNd.                        .kMMMMMMMMW0:                                                                                                                                                                                                                 cNMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMX:                         lNMMMMXxc,.                                                                                                                                                                                                                  ,KMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMWd.                        .kMMMNo.                                                                                                                                                                                                                     .kMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMM0;                         cKKkl.                                                                                                                                                                                                                       lNMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWx.                         ..                                                  .':.                                                    ..,cllc;..                    .....                                                                             ;XMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK:.                                                                        .,cokXXo......                                       ..';cok0XWWMMWNXOdlccccccccccccccloxO0XXXOl'                                                                           ;XMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKc.                          ..                                     ..;ldkKNMMMMMNXKKKK0Okkkxdooolc::::::::::::::::::::::::cldk0KNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOc.                          .....                                          ;XMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKc.                        .lc.                                .,coOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0dolc:;;;,,,,,,,,,,;;;:cldk0KXNx.                                         ,KMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK:                         ',.                         .';codOXNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWWWWWWWWWWMMMMMMMMMO.                                         .kMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWO,                         .,cll,            ..,;::ldOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         .kMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWO,                         ,kWWx.      .':lx0XWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0'                                         .xMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWO,                         'kNk'....;okXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMX;                                         .xMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk,                         'kXK000KWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN:                                          lNMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk'                         :XMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN:                                          ,KMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWx.                        ,KMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                                          .xWMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK,                        '0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWd.                                          lWMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMX;                        '0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0'                                          ,OWMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMX;                        ,0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                                           cXMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK,                        ,0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXd:;;;:coxxkKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWd.                                          ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMk.                        ,KMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0:.         .;ldk0KKKKKKKKKKXNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO'                                          ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK:                         :XMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNK0OOd'               ............';:cccccccccccccccccccccccccccoxOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNd.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0:.                        .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0:.                                                               ..,:ok0XWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk'                         .dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWO;.                                                                     .':oOXNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0l.                         'dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKdlcc,.                                                                          ..,cokKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0l.                         .,xNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk,                                                                                    ..:d0NWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXd'                          'l0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWO:.                                                                                       .,okXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMWKl.                         'oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxc.                                                                                      .'cONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMNk;.                         ;OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWO;.                                                                                        .c0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMXo.                         .oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXxl;'.                                                                                       .:kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMXl.                        .:OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNk;.                                                                                       .;kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMXl.                        .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKc.                                                                                         .:ONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMXo.                        .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0kdllc:'.                                                                                   .;kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMNo.                        .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0xo:;,''''''''...                                                                     .;ONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMWk'                        .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWWWNNX0Okkkkkkkkkkkkkkkkkkkkkkkkkkkxdoc,..                                    .c0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMWO,                         :KMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNX0xo:'.                                 'o0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMK:                         ,OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0xc,..                             .,dXWMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMXl.                        .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxl,.                           .c0MMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ;XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMNd.                        .oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0d;.                         .lXMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         ,KMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMO'                        .cXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0c.                        .kWMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         .OMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMWo.                        ,0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMX:                         oWMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         .kMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMK;                        .dWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWd.                        lWMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         .xMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMO.                        .OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWd.                        lWMMMMMMMMMMMMMMMMMMMMMMMMMK,                                          lNMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMO.                        ;XMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNl                         oWMMMMMMMMMMMMMMMMMMMMMMMMMN:                                          ,KMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMO.                        cNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                        .dWMMMMMMMMMMMMMMMMMMMMMMMMMNc                                          .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMO.                        cNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                        .OMMMMMMMMMMMMMMMMMMMMMMMMMMWd.                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMO.                        cNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                        .OMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMO.                        cNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMX;                        .OMMMMMMMMMMMMMMMMMMMMMMMMMMMK,                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMO.                        :XMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWx.                        .OMMMMMMMMMMMMMMMMMMMMMMMMMMMX;                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMO'                        ,0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK;                         :XMMMMMMMMMMMMMMMMMMMMMMMMMMMX;                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMK;                        .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMx.                        .kWMMMMMMMMMMMMMMMMMMMMMMMMMMMX;                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMWd.                        .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWo                         cXMMMMMMMMMMMMMMMMMMMMMMMMMMMMX;                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMKc.                        .c0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0,                        .dWMMMMMMMMMMMMMMMMMMMMMMMMMMMMX;                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMKl.                         .ckKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWXXKKKKKKKKKKXNWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWo.                        .OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK;                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMXo.                           .,:ldk0XNWMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWNK0kdl:,'............',;:lxOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxl.                         lNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                         .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMNk;.                               ..';:ldkO0KXNNWWWNNNNNNNNNX0xoc:;,'..                        ..,;ldOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKxl;'.                            'OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWo                                          .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMWKl.                                       ...'',,,''....'''..                                       ..,coOKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKd,.                               .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                                          .OMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMNk:.                                                                                                    .':oOKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXx;.                                 :KMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK;                                          ,KMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMWXd'                                                                                                       ..;coxk0XNWMMMMMMMMMMMMMMMMMMMMMMWKl'                                  .:OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                                          cNMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMWKd,                                                                                                            ..,:lx0XNWWWMMMMMMMMMMMMMXd'                                  .;xXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMk.                                         .xMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXd'                                                                                                                ..',;::ccccclloddol,.                                  ,xXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWo                                          .kMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKo'                                                                                                                                                                   .c0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK:                                          ,KMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKd,.                                                                                                                                                             .;dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK:                                           :XMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXd'.                                                                                                                                                          .oXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWo                                            lWMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKx:.                                                                                                                                                     .,lONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                                           .xMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOo;.                                                                                                                                                .;xXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                                           :KMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWN0xl;..                                                  ..',,''....                                                                           ..'oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNc                                          ;KMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNK0koc:,...                                 ...';coxOKXNWWNNXKK0Oxoc,..                                                             .,coxkOKKXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNo........                            .....,kWMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXKOkdl:;,'....      ....     ..;lxO00KXNWMMMMMMMMMMMMMMMMMMWNX0koc,..                                                    .;d0NWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNKKKKKKKd.                          ,OKKKKXWMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNNXXK0OOOOO0KXXK0OOOO0KNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxl,..                                             .:ONMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                         .oNMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0xl,..                                        ,dXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO.                        .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNKOxoc;,..                              .ckXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0,                        ;KMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNX0xl:,..                      .;kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOxkkkkkx;          ckkkkkKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXKOOkkkkkkkxdoooooooooodxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWl         'OMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWl        .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWo       .oWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWOllllllldKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+]
+
+var MAP1 = [
     "MMMMMMMMMMMMMMMMMMMMMMMMMMMMWXK000000XWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMMMMMMMMMMMMMMMMMMMMMMMWNKl........;clllllllllllldkO00KNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMMWKkkkkkkkkkkkkkkxdolc;''.                         ....,;;:::::::::::::loxkkkkKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXKKKKKKKKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWNNWNNNNNNWWMMMMMMMMMMMMMMMMMMMMMMMMMMM",
@@ -11,7 +166,7 @@ var MAP = [
 "MMMMMN:                                                                           cXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO,           .:kXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNNNNNNXd.                'lOXWMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMMN:                                                                           cXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWO,             .cXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMKo;,,,,,'.                   .;d0NMMMMMMMMMMMMMMMMMMMM",
 "MMMMMWo                                                                           'oO0XXXXNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWk,              .:kKXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0:.                             .c0WMMMMMMMMMMMMMMMMMM",
-"MMMMMMx.                                                                             .....;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNkc;;;;;;'.                 .,cx0NWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0:.                               'xNMMMMMMMMMMMMMMMMM",
+"MMMMMMx.                                                                              .....;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNkc;;;;;;'.                 .,cx0NWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0:.                               'xNMMMMMMMMMMMMMMMMM",
 "MMMMMMx.                                                                                  .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXl.                             .;oOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0:.                                .l0NMMMMMMMMMMMMMMM",
 "MMMMMMx.                                                                                  .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXl.                                .'cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0dllllll;.                                   .:xKWMMMMMMMMMMMM",
 "MMMMMMx.                                                                                  .lKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXl.                                   .'lONWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNd.                                              .cOWMMMMMMMMMM",
@@ -69,8 +224,8 @@ var MAP = [
 "MMMMXl.                                                                                                          .,lx0KNWMMMMMMMMMMMMMMMMWk'.                                                                                                              .:okKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMWO'                                                                                                         ,ONWMMMMMMMMMMMMMMMMMMMMMMWKx;.                                                                                                           .;xXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMKc.                                           ..                                                            cNMMMMMMMMMMMMMMMMMMMMMMMMMMWXx:..                                                                                                          .kMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-"MMXx;                                            'xOdc,.                                                      .'xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkc.                                                                                                          :OXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "NO:.                                            .lXMMWXOo,.                                              ..;lxOKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXd.                                                                                                          .;xKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+"MMXx;                                            'xOdc,.                                                      .'xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkc.                                                                                                          :OXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "l.                                             .oXMMMMMMWN0d:'.                                     ..,:oOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNk,                                                                                                           .':d0NWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 ".                                             .oNMMMMMMMMMMMWKOxl:;;,'.................',,,;;;;:ldxO0XNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXk;.                                                                                                              .lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "                                             .oXMMMMMMMMMMMMMMMMMWWWWNXXXXXXXXXXXXXXXXNNWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNO:.                                                                                                                 'kNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
@@ -156,11 +311,13 @@ var MAP = [
 "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNkoooooookNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWMMWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 ]
 
+var MAP = MAP1;
+
+var level = 1;
+
 var mapHeight = MAP.length;
 var mapWidth = MAP[0].length;
 
-console.log(mapHeight);
-console.log(mapWidth);
 
 function getTile(x, y)
 {
@@ -202,7 +359,8 @@ var playerAcc = new Vec(0, 0);
 // var playery = 0;
 var player = document.createElement("img");
 player.crossOrigin = 'anonymous';
-player.src ="https://raw.githubusercontent.com/LMAWorkExperince/lmaworkexperince.github.io/main/textures/sub.png"
+player.src = "https://raw.githubusercontent.com/LMAWorkExperince/lmaworkexperince.github.io/main/textures/sub.png"
+
 var playerFlipped = document.createElement("img");
 playerFlipped.crossOrigin = 'anonymous';
 playerFlipped.src = "https://raw.githubusercontent.com/LMAWorkExperince/lmaworkexperince.github.io/main/textures/subflipped.png";
@@ -215,6 +373,7 @@ map1.src ="https://raw.githubusercontent.com/LMAWorkExperince/lmaworkexperince.g
 
 var shoot = false;
 var shoots = [];
+var playerDirec = false;
 
 
 
@@ -291,7 +450,7 @@ function moveDots()
         }
         drawPixel(context, dots[i].pos.x, dots[i].pos.y, 'black', 3);
         dots[i].pos = dots[i].pos.add(dots[i].acc.multiply(5));
-        drawPixel(context, dots[i].pos.x, dots[i].pos.y, 'green', 3);
+        drawPixel(context, dots[i].pos.x, dots[i].pos.y, dots[i].Colour, 3);
         
         var mapPos = getTile(dots[i].pos.x, dots[i].pos.y);
         
@@ -342,7 +501,6 @@ function moveDots()
             // dots[i].acc = dots[i].acc.negative().multiply(1);
             dots[i].hit = true;
             if (MAP[mapPos.y][mapPos.x] == 'E') {
-                console.log("E")
                 dots[i].Colour = 'red';
 
             }
@@ -382,33 +540,93 @@ function moveDots()
     // }
 
 }
+// MAP[mapPos.y] = MAP[mapPos.y].replace("E", " ");
+function floodFill(x, y)
+{
+    MAP[y] = MAP[y].replace("E", " ");
+
+    if (MAP[y-1][x] == 'E') {
+        floodFill(x,y-1);
+    } 
+    if (MAP[y+1][x] == 'E') {
+        floodFill(x,y+1);
+    }
+    if (MAP[y][x+1] == 'E') {
+        floodFill(x+1,y);
+    }
+    if (MAP[y][x-1] == 'E') {
+        floodFill(x-1,y);
+    }
+}
+
 function fire() {
     for (var i = 0; i < shoots.length; i++)
     {
-        //drawPixel(context, shoots[i].pos.x, shoots[i].pos.y, 'black', 3);
-        shoots[i].pos = shoots[i].pos.add(shoots[i].acc.multiply(5));
-        drawPixel(context, shoots[i].pos.x, shoots[i].pos.y, 'purple', 3);
-        
-        var mapPos = getTile(shoots[i].pos.x, shoots[i].pos.y)
         if (shoots[i].hit)
         {
-            var playerVec = new Vec(playerx, playery);
-            shoots[i].acc = shoots[i].pos.subtract( playerVec ).unit().negative();
+            shoots[i].orange -= 0.01;
+            var color = rgbToHex(255 * shoots[i].orange, 165 * shoots[i].orange, 0);
+            drawPixel(context, shoots[i].pos.x, shoots[i].pos.y,  color, 10);
+            if (shoots[i].orange < 0)
+                shoots.splice(i,1);
             continue;
-        } 
-        else if ( MAP[mapPos.y][mapPos.x] != ' ' )
+       } 
+        drawPixel(context, shoots[i].pos.x, shoots[i].pos.y, 'black', 5);
+        shoots[i].pos = shoots[i].pos.add(shoots[i].acc.multiply(5));
+        drawPixel(context, shoots[i].pos.x, shoots[i].pos.y, 'purple', 5);
+        
+        
+        var mapPos = getTile(shoots[i].pos.x, shoots[i].pos.y)
+        if ( MAP[mapPos.y][mapPos.x] != ' ' )
         {
             if (MAP[mapPos.y][mapPos.x] == 'E') {
-                console.log("E")
-                shoots[i].hit
+                
+                shoots[i].hit = true
 
-            } else {
-                //drawPixel(context, shoots[i].pos.x, shoots[i].pos.y, 'black', 3);
-                shoots.splice(i,1)
+                floodFill(mapPos.x, mapPos.y);
+
+                var containsE = true;
+                for(var scanI = 1; scanI < mapHeight; scanI++) {
+                    if (MAP[scanI].includes("E"))
+                    {
+                        containsE = true;
+                        break;
+                    } else {
+                        containsE = false;
+                    }
+                }
+                if (containsE == false)
+                {
+                    WIN = true;
+                    END_TIME = (Date.now() - START_TIME) / 1000;
+                }
+
             }
+            shoots[i].orange = 1;
+            shoots[i].hit = true
+            drawPixel(context, shoots[i].pos.x, shoots[i].pos.y, 'black', 5);
+                // shoots.splice(i,1)
             
         } 
     }
+}
+function spawnFire()
+{
+     i = shoots.length;
+
+    shoots[i] = new dot();
+
+    if(playerDirec) {
+        shoots[i].acc.x = -1;
+        shoots[i].pos.x = playerx -50+ shoots[i].acc.x;
+        shoots[i].pos.y = playery + shoots[i].acc.y;
+    } else if (playerDirec == false) {    
+        shoots[i].acc.x = 1;
+        shoots[i].pos.x = playerx +50+ shoots[i].acc.x;
+        shoots[i].pos.y = playery+ shoots[i].acc.y;
+    }
+
+    shoots[i].angle = i;
 }
 function black2() {
     // var roundedX = Math.round(dots[i].x);
@@ -527,23 +745,43 @@ function handlePlayerMovement(deltaTime)
     playerx += playerAcc.x * deltaTime;
     playery += playerAcc.y * deltaTime;
 }
+
+var shootTimer = 0;
 spawnDots();
+var START_TIME = Date.now();
+var END_TIME = Date.now();
 //spawntarget();
 function run () {
+
+    if (WIN) {
+        context.fillStyle = '#000';
+        context.fillRect(0, 0, 1900, 1000);
+        context.fillStyle = 'blue';
+        context.font = "300px Impact";    
+        context.fillText( "👍 Win 👍", 400, 600 );
+        
+        context.font = "200px Impact";    
+        context.fillText( "Time:" + END_TIME, 400, 800 );
+        return;
+    }
+
+
+
+    shootTimer++;
     moveDots();
 
-    
     // context.drawImage(player, 900, 485);
     // context.drawImage(map1, map1x, map1y, 1900, 1000);
     
     var deltaTime = getDeltaTime();
 
     handlePlayerMovement(deltaTime);
-    
-    if(playerAcc.x > 0) {
-        context.drawImage(player, playerx-50,playery-15);
-    } else {
+    if(playerAcc.x < 0) {
         context.drawImage(playerFlipped, playerx-50,playery-15);
+        playerDirec = true
+    } else if (playerAcc.x >= 0){
+        context.drawImage(player, playerx-50,playery-15);
+        playerDirec = false;
     }
     
     count++
@@ -559,9 +797,14 @@ function replacePlayer() {
     context.fillRect(playerx-52, playery-15, 105, 35);
 }
 document.addEventListener('keydown', function (event) {
-    if(event.keyCode === 32) {
+    if(event.keyCode === 32 && shootTimer > 10) {
+        shootTimer = 0;
         shoots.push(new dot);
         shoot = true;
+        spawnFire();
+    }
+    if (event.keyCode == 13) {
+        playerAcc = playerAcc.multiply(.5)
     }
     if(event.keyCode === 37) {
         playerAcc.x -= 3;

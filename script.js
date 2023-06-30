@@ -202,13 +202,19 @@ var playerAcc = new Vec(0, 0);
 // var playery = 0;
 var player = document.createElement("img");
 player.crossOrigin = 'anonymous';
-player.src ="https://raw.githubusercontent.com/LMAWorkExperince/lmaworkexperince.github.io/main/textures/sub.png";
+player.src ="https://raw.githubusercontent.com/LMAWorkExperince/lmaworkexperince.github.io/main/textures/sub.png"
+var playerFlipped = document.createElement("img");
+playerFlipped.crossOrigin = 'anonymous';
+playerFlipped.src = "https://raw.githubusercontent.com/LMAWorkExperince/lmaworkexperince.github.io/main/textures/subflipped.png";
 
 var map1 = document.createElement("img");
 var map1x = 0
 var map1y = 0;
 map1.crossOrigin = 'anonymous';
 map1.src ="https://raw.githubusercontent.com/LMAWorkExperince/lmaworkexperince.github.io/main/textures/map2.png"
+
+var shoot = false;
+var shoots = [];
 
 
 
@@ -224,7 +230,12 @@ function dot ()
     this.x = 0;
     this.num = -1;
     this.green = 255;
-    this.opposite = false;
+    if(shoot) {
+        this.Colour = 'purple';
+        shoot = false;
+    } else {
+    this.Colour = 'green';
+    }
 
 }
 
@@ -332,7 +343,7 @@ function moveDots()
             dots[i].hit = true;
             if (MAP[mapPos.y][mapPos.x] == 'E') {
                 console.log("E")
-                dots[i].opposite = true;
+                dots[i].Colour = 'red';
 
             }
             // }
@@ -344,7 +355,7 @@ function moveDots()
 
         dots[i].t++;
     }
-    for (var i = 0; i < ball.length; i++){ 
+    // for (var i = 0; i < ball.length; i++){ 
         // for (var j = 0; j < dotsNum; j++)
         // {
         //     if (dots[j].returned == true) {
@@ -366,10 +377,38 @@ function moveDots()
         //         dotsNum--;
         //     }
         // }
-        drawCircle(ball[i].pos.x,ball[i].pos.y, 'green',15)
-        ball[i].pos = ball[i].pos.add(ball[i].acc.multiply(5))
-    }
+        //drawCircle(ball[i].pos.x,ball[i].pos.y, 'green',15)
+        //ball[i].pos = ball[i].pos.add(ball[i].acc.multiply(5))
+    // }
 
+}
+function fire() {
+    for (var i = 0; i < shoots.length; i++)
+    {
+        //drawPixel(context, shoots[i].pos.x, shoots[i].pos.y, 'black', 3);
+        shoots[i].pos = shoots[i].pos.add(shoots[i].acc.multiply(5));
+        drawPixel(context, shoots[i].pos.x, shoots[i].pos.y, 'purple', 3);
+        
+        var mapPos = getTile(shoots[i].pos.x, shoots[i].pos.y)
+        if (shoots[i].hit)
+        {
+            var playerVec = new Vec(playerx, playery);
+            shoots[i].acc = shoots[i].pos.subtract( playerVec ).unit().negative();
+            continue;
+        } 
+        else if ( MAP[mapPos.y][mapPos.x] != ' ' )
+        {
+            if (MAP[mapPos.y][mapPos.x] == 'E') {
+                console.log("E")
+                shoots[i].hit
+
+            } else {
+                //drawPixel(context, shoots[i].pos.x, shoots[i].pos.y, 'black', 3);
+                shoots.splice(i,1)
+            }
+            
+        } 
+    }
 }
 function black2() {
     // var roundedX = Math.round(dots[i].x);
@@ -394,10 +433,13 @@ function black2() {
         dots[i].green--;
         // context.fillStyle = rgbToHex(0, dots[i].green, 0) || '#000';
         // context.fillRect(roundedX, roundedY, 3, 3);
-        if(dots[i].opposite == false) {
+        if(dots[i].Colour == 'green') {
             drawPixel(context, dots[i].x, dots[i].y, rgbToHex(0, dots[i].green, 0), 3);
-        } else if (dots[i].opposite) {
+        } else if (dots[i].Colour == 'red') {
             drawPixel(context, dots[i].x, dots[i].y, rgbToHex(dots[i].green, 0, 0), 3);
+        } else if (dots[i].Colour == 'purple') {
+            drawPixel(context, dots[i].x, dots[i].y, '#800080', 3);
+
         }
     }
     
@@ -485,9 +527,8 @@ function handlePlayerMovement(deltaTime)
     playerx += playerAcc.x * deltaTime;
     playery += playerAcc.y * deltaTime;
 }
-
 spawnDots();
-spawntarget();
+//spawntarget();
 function run () {
     moveDots();
 
@@ -499,12 +540,18 @@ function run () {
 
     handlePlayerMovement(deltaTime);
     
-    context.drawImage(player, playerx-50,playery-15);
+    if(playerAcc.x > 0) {
+        context.drawImage(player, playerx-50,playery-15);
+    } else {
+        context.drawImage(playerFlipped, playerx-50,playery-15);
+    }
+    
     count++
-    if (count == 120) {
+    if (count == 180) {
         spawnDots()
         count = 0;
     }
+    fire();
 
 }
 function replacePlayer() {
@@ -512,15 +559,19 @@ function replacePlayer() {
     context.fillRect(playerx-52, playery-15, 105, 35);
 }
 document.addEventListener('keydown', function (event) {
+    if(event.keyCode === 32) {
+        shoots.push(new dot);
+        shoot = true;
+    }
     if(event.keyCode === 37) {
-        playerAcc.x -= 1;
+        playerAcc.x -= 3;
     } else if (event.keyCode === 39) {
-        playerAcc.x += 1
+        playerAcc.x += 3;
     }
     if (event.keyCode === 38) {
-        playerAcc.y -= 1;
+        playerAcc.y -= 3;
     }  else if (event.keyCode === 40) {
-        playerAcc.y += 1
+        playerAcc.y += 3;
     }
     }, false);
 
